@@ -6,7 +6,10 @@ class Team < ApplicationRecord
   before_create :add_abbreviation_from_name!
 
   has_one :manager
-  has_one_attached :logo
+  has_many :players
+  has_many_attached :logo
+
+  accepts_nested_attributes_for :players
 
   def add_abbreviation_from_name!
     return if abbreviation
