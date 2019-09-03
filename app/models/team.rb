@@ -7,7 +7,7 @@ class Team < ApplicationRecord
 
   has_one :manager
   has_many :players
-  has_one_attached :logo
+  has_many_attached :logo
 
   accepts_nested_attributes_for :players
 

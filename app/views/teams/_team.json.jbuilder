@@ -15,4 +15,11 @@ json.set! :players do
 #   json.set! :number, player.number
   end
 end
-json.set! :logo_url, rails_blob_url(team.logo)
+
+json.set! :logos do
+  json.array! team.logo do |one_logo|
+    json.set! :url, rails_blob_url(one_logo)
+  end
+end
+# json.extract! :logo_url, rails_blob_url(team.logo)
+
