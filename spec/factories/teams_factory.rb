@@ -2,6 +2,11 @@
 
 FactoryBot.define do
   factory :team do
-    name { 'MyString' }
+    name { Faker::Name.name }
+    association :manager, factory: :manager
+
+    after(:build) do |i|
+      i.manager = FactoryBot.build(:manager)
+    end
   end
 end

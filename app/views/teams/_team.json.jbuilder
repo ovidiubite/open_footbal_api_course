@@ -8,7 +8,6 @@ json.set! :manager do
 end
 
 
-json.set! :logo_url, team.logos.attachments
 json.set! :logo_url, Array(team.logos.map(&method(:rails_blob_url)))
 
 

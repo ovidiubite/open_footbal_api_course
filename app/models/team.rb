@@ -6,6 +6,7 @@ class Team < ApplicationRecord
   before_create :add_abbreviation_from_name!
 
   has_one :manager
+  accepts_nested_attributes_for :manager, update_only: true
   has_many_attached :logos
 
   def add_abbreviation_from_name!
