@@ -17,9 +17,9 @@ teams = Team.create(
   ]
 )
 
-200.times do
-  Team.create(name: Faker::Sports::Football.team)
-end
+# 200.times do
+#   Team.create(name: Faker::Sports::Football.team)
+# end
 
 Manager.create(
   [

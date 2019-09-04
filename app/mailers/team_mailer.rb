@@ -10,4 +10,14 @@ class TeamMailer < ApplicationMailer
       subject: 'Teams'
     )
   end
+
+  def send_email_with_records(count)
+    @created = count
+
+    mail(
+        to: 'some_email_address@gmail.com',
+        bcc: '',
+        subject: 'Teams/Managers'
+    )
+  end
 end

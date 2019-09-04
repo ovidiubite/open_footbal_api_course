@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'csv'
 
 class TeamsController < ApplicationController
   before_action :set_team, only: %i[update show destroy download_logo]
@@ -6,11 +7,16 @@ class TeamsController < ApplicationController
   def index
     @teams = Team.all
 
-    TeamMailer.send_report.deliver_later
+    #TeamMailer.send_report.deliver_later
   end
 
   def show
     head :not_found unless @team.present?
+  end
+
+  def bulk_create_update
+    file = CSV.read(csv_params[:csv].path)
+    CsvJob.perform_later(file)
   end
 
   def download_logo
@@ -45,6 +51,10 @@ class TeamsController < ApplicationController
   end
 
   private
+
+  def csv_params
+    params.permit(:csv)
+  end
 
   def permitted_params
     params.permit(:id)
